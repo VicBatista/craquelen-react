@@ -2,11 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
-function App() {
+function App(greetings) {
   return (
     <div className="App">
       <NavBar />
-      <ItemListContainer />
+      <ItemListContainer greetings="Bienvenid@!"/>
     </div>
   );
 }
