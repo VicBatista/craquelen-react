@@ -1,6 +1,7 @@
 import React from 'react'
 import {Navbar, Container, Nav} from 'react-bootstrap'
 import CartIcon from './CartIcon'
+
 const NavBar = () => {
     return (
         <div>
