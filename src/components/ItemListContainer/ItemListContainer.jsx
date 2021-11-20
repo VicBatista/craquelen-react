@@ -1,14 +1,30 @@
 import React from 'react'
-import Item from '../Item/Item'
+//import Item from '../Item/Item'
+import ItemCounter from '../ItemCount/ItemCounter'
+import {useEffect, useState} from 'react';
+import ItemList from '../ItemList/ItemList';
+import {getFetch} from './helpers/getFetch';
 
+function ItemListContainer() {
+    const [data, setData]= useState([]);
+    
+    useEffect(() => {
+        (setTimeout(() => {
+        const getFetch = fetch(producto);
+        getFetch.then((resolved)=> resolved.get()).then((data) => setData(data));
+    }, 2000))
+    }, [])
 
-function ItemListContainer({greetings}) {
+    console.log(data)
+
+    function onAdd(cant) {
+        console.log(cant)
+    }
+    
     return (
         <div>
-            <h2> Hola! {greetings}</h2>
-            <Item name="Torta Nina" price="$2000" description="Bizcocho de chocolate, almíbar de café, ganache de chocolate semiamargo y cremoso de dulce de leche" imgUrl="https://i.ibb.co/Jd6xmR0/151137197-462827654742001-4507130926717660266-n.jpg"  />
-            <Item name="Torta Marie" price="$1800" description="Bizcocho de matcha, frosting de chocolate blanco y curd de limón" imgUrl="https://i.ibb.co/K012LC4/Whats-App-Image-2021-09-21-at-10-55-13.jpg"/>
-            <Item name="Cheesecake" price="$1500" description="Cheesecake con mermelada casera de frutos rojos" imgUrl="https://i.ibb.co/8Dx9TJD/Whats-App-Image-2021-09-21-at-10-55-08.jpg"/>
+            <ItemList />
+            <ItemCounter inicial={1} stock={producto.quant} onAdd={onAdd} />
     
         </div>
     )

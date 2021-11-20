@@ -1,0 +1,49 @@
+
+.contenedor-productos {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.card {
+    border: solid #D96281 1px;
+    margin: 2em;
+}
+.contenedor-productos h1 {
+    font-size: 1.4em;
+    font-family: "Overpass", sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    color: #011C40;
+}
+.contenedor-productos h2 {
+    font-size: 1.3em;
+    font-family: "Playfair Display", serif;
+    text-align: center;
+    color: #011C40;
+}
+.contenedor-productos h3 {
+    font-size: 1.3em;
+    font-family: "Overpass", sans-serif;
+    text-align: center;
+    margin: 1em;
+    color: #FAAC02;
+    text-shadow: 1px 0px 2px #5f3519;
+}
+.contenedor-productos .btn-primary {
+    font-family: "Overpass", sans-serif;
+    border-radius: 5px;
+    background-color: #037F8C;
+    border: none;
+    font-size: 1.2em;
+    color: #FFFFFF;
+    padding: 0.3em;
+    margin: 1em auto;
+    display: flex;
+    justify-self: center;
+}
+.contenedor-productos .btn-primary:hover {
+    background-color: #011C40;
+    cursor: pointer;
+}
+  

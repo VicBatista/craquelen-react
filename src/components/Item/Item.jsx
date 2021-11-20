@@ -1,26 +1,21 @@
-import React from 'react'
-
+import React from 'react';
+import './itemStyles.css';
 
 
 const Item = ({imgUrl, name, price, description}) => {
-    const styles= {
-        display: "flex",
-        margin: "1em",
-        border: "2px solid #B9692A"
-    }
+
     return (
-            <div className="row row-cols-4 row-cols-md-4 g-4">
-                <div className="col">
-                    <div className="card h-100" style={styles}>
-                        <img src={imgUrl} className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h1 className="card-title">{name}</h1>
-                            <h2 className="card-title">Precio: {price}</h2>
-                            <p className="card-text">{description}</p>
-                        </div>
-                    </div>
+        <div className="row justify-content-center shop-container">
+            <div className="contenedor-productos card col-3">
+                <img src={imgUrl} className="d-block w-100 card-img-top m-3" alt="" />
+                <div className="card-body p-1">
+                    <h1>{name}</h1>
+                    <h2>{description}</h2>
+                    <h3>{price}</h3>
+                    <button className="btn-primary">Detalles</button>
                 </div>
             </div>
+        </div>
     )
 }
 
