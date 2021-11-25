@@ -1,31 +1,31 @@
 import React from 'react'
 //import Item from '../Item/Item'
-import ItemCounter from '../ItemCount/ItemCounter'
 import {useEffect, useState} from 'react';
 import ItemList from '../ItemList/ItemList';
-import {getFetch} from './helpers/getFetch';
+import {getFetch} from '../../helpers/getFetch';
 
 function ItemListContainer() {
     const [data, setData]= useState([]);
-    
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-        (setTimeout(() => {
-        const getFetch = fetch(producto);
-        getFetch.then((resolved)=> resolved.get()).then((data) => setData(data));
-    }, 2000))
+        
+            (getFetch.then(data => setData(data))
+            .catch(err => console.log(err))
+            .finally(()=> setLoading(!true))
+            /* getFetch.then((producto) => {
+            console.log(producto);
+            }).catch((err) => console.log(err));
+           /*  const fetchData = fetch(producto);
+            fetchData.then(resolve=> resolve.json()).then(data => setData(data)); */
+            )
     }, [])
 
     console.log(data)
-
-    function onAdd(cant) {
-        console.log(cant)
-    }
     
     return (
         <div>
-            <ItemList />
-            <ItemCounter inicial={1} stock={producto.quant} onAdd={onAdd} />
-    
+            {loading ? <h1>Está ejecutandose la promesa</h1> : <ItemList data={data}/> }
+
         </div>
     )
 }

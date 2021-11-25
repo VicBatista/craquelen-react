@@ -10,8 +10,11 @@ const producto = [
     }
 ]
 
-export const getFetch = new Promise((resolve, reject)=>{
-    setTimeout(()=>{
-        resolve(producto)
-    }, 2000)
-})
+export const getFetch = () => {
+
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(producto)
+        }, 3000)
+    })
+}
