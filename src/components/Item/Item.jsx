@@ -1,25 +1,28 @@
 import React from 'react';
 import ItemCounter from '../ItemCount/ItemCounter';
 //import onAdd from '../ItemCount/ItemCounter';
+import { Link } from 'react-router-dom';
 import './itemStyles.css';
 
 
-const Item = ({producto, imgUrl, name, price, description}) => {
+const Item = ({item}) => {
     
     function onAdd(cant) {
         console.log(cant)
     }
     return (
-        <div className="row justify-content-center shop-container">
+        <div key={item.id} className="row justify-content-center shop-container">
             <div className="contenedor-productos card col-3">
-                <img src={imgUrl} className="d-block w-100 card-img-top m-3" alt="" />
+                <img src={item.imgUrl} className="d-block w-100 card-img-top m-3" alt={item.name} />
                 <div className="card-body p-1">
-                    <h1>{name}</h1>
-                    <h2>{description}</h2>
-                    <h3>{price}</h3>
-                    <button className="btn-primary">Detalles</button>
+                        <h1>{item.name}</h1>
+                    <h2>{item.description}</h2>
+                    <h3>$ {item.price}</h3>
+                    <Link to={`item/${item.id}`} >
+                        <button className="btn-primary">Detalles</button>
+                    </Link> 
                 </div>
-                <ItemCounter inicial={1} stock={producto.quant} onAdd={onAdd} />
+                <ItemCounter inicial={1} stock={item.stock} id={item.id} onAdd={onAdd} />
             </div>
         </div>
     )

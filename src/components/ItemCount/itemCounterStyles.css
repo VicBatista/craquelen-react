@@ -1,23 +1,35 @@
 .counter {
+    border-radius: 30px;
+    border: none;
+}
+
+.addRestContainer {
     display: flex;
     justify-content: center;
     align-content: center;
-    border-radius: 30px;
-    border: none;
-  }
-  .counter .btn-add {
+    text-align: center;
+}
+.counter .btn-add {
     font-family: "Overpass", sans-serif;
-    font-size: 1.1em;
-    padding: 0.2em;
+    font-size: 1.2em;
+    padding: 0.3em;
+    margin: 1em auto;
     background-color: #B86730;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #FFFFFF;
     cursor: pointer;
-  }
+    border-radius: 5px;
+    border: none;
+}
 
-  .counter .btn {
+.counter .btn-add:hover {
+    background-color: #724121;
+    cursor: pointer;
+}
+
+.counter .btn {
     font-family: "Overpass", sans-serif;
     font-size: 1.1em;
     padding: 0.5em;
@@ -30,8 +42,8 @@
     align-items: center;
     color: #FFFFFF;
     cursor: pointer;
-  }
-  .counter .quant {
+}
+.counter .quant {
     background-color: none;
     border-radius: 0;
     border: none;
@@ -39,5 +51,5 @@
     color: #D96281;
     justify-content: center;
     
-  }
+}
   
