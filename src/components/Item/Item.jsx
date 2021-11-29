@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 import './itemStyles.css';
 
 
-const Item = ({item}) => {
+export default function Item({item}) {
     
     function onAdd(cant) {
         console.log(cant)
     }
     return (
-        <div key={item.id} className="row justify-content-center shop-container">
-            <div className="contenedor-productos card col-3">
+            <div key={item.id} className="contenedor-productos card m-4 col-3">
                 <img src={item.imgUrl} className="d-block w-100 card-img-top m-3" alt={item.name} />
                 <div className="card-body p-1">
                         <h1>{item.name}</h1>
@@ -24,8 +23,6 @@ const Item = ({item}) => {
                 </div>
                 <ItemCounter inicial={1} stock={item.stock} id={item.id} onAdd={onAdd} />
             </div>
-        </div>
     )
 }
 
-export default Item

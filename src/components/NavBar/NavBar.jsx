@@ -1,32 +1,47 @@
-import React from 'react'
-import {Navbar, Container, Nav} from 'react-bootstrap'
-import CartIcon from './CartIcon'
+import React from 'react';
+import {Navbar, Container, Nav, Dropdown} from 'react-bootstrap';
+import CartIcon from './CartIcon';
+import { Link } from 'react-router-dom';
+import './navBarStyles.css';
 
 const NavBar = () => {
     return (
         <div>
             <>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect expand="lg" className="nav">
                 <Container>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Nosotras</Nav.Link>
-                <Nav.Link href="#pricing">Mayoristas</Nav.Link>
-                <Nav.Link href="#pricing">Tienda</Nav.Link>
-                <Navbar.Brand href="#home"><img src="https://i.ibb.co/qRKD4TK/logo.png" 
-                alt="Logo Craquelen"
-                width="90"
-                height="90"
-                className="d-inline-block align-top"
-                />
-                </Navbar.Brand>
-                <Nav>
-                    <CartIcon />
-                </Nav>
-                </Nav>
-                </Navbar.Collapse>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav" className="row align-items-center justify-content-between">
+                        <ul className="col-4">
+                            <li><Link to="/">Home</Link></li>
+                            <li>Nosotras</li>
+                            <li>Mayoristas</li>
+                            <li>
+                                <Dropdown>
+                                    <Dropdown.Toggle className="btnLinksNav" id="dropdown-basic">
+                                        <Link to="/">Tienda</Link>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="#/action-1">
+                                            <Link to="/categoria/semanal">Stock semanal</Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2">
+                                            <Link to="/categoria/tortas">Tortas</Link>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="#/action-3">
+                                            <Link to="/categoria/box">Box</Link>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </li>
+                            <Navbar.Brand href="#home">
+                                <img src="https://i.ibb.co/qRKD4TK/logo.png" alt="Logo Craquelen" width="90" height="90"  className="d-inline-block align-top"/>
+                            </Navbar.Brand>
+                            <Nav>
+                                <CartIcon />
+                            </Nav>
+                        </ul>
+                    </Navbar.Collapse>
                 </Container>
             </Navbar>
             </>

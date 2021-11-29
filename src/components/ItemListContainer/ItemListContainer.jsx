@@ -32,7 +32,7 @@ function ItemListContainer() {
     console.log(data)
     
     return (
-        <div>
+        <div className="row justify-content-center">
             {loading ? <h1>Loading...</h1> : <ItemList data={data}/> }
 
         </div>
