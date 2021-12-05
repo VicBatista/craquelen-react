@@ -1,8 +1,18 @@
 import {useState} from 'react';
+import { useCartContext } from '../../Context/CartContext';
 import './itemCounterStyles.css';
 
-const ItemCounter = ({inicial, stock, onAdd}) => {
-    const [count, setCount] = useState(inicial)
+const ItemCounter = ({inicial, stock, onAdd, item}) => {
+    const [count, setCount] = useState(inicial);
+    const {cartList, addProducto} = useCartContext;
+
+ /*    function onAdd(cant){
+        setCount(cant)
+        addProducto({ item: item, cantidad: cant})
+    }
+    console.log(cartList) */
+
+
     function Sumar() {
         if (count<stock) {
             setCount(count + 1)
@@ -13,10 +23,12 @@ const ItemCounter = ({inicial, stock, onAdd}) => {
             setCount(count-1)   
         }
     }
-    function Agregar() {
+    function Agregar(cant) {
         onAdd(count)
         setCount(1)
+        addProducto({ item: item, cantidad: cant})
     }
+    console.log(cartList)
 
     return (
         <div className="counter">
@@ -25,7 +37,8 @@ const ItemCounter = ({inicial, stock, onAdd}) => {
                 <div className="quant">{count}</div>
                 <button onClick={Sumar} type="button" className="btn">+</button>
             </div>
-            <button onClick={Agregar} className="btn-add">Agregar al carrito</button>
+            <button onClick={Agregar} className="btn-add">Lo quiero!</button>
+            {/* <button onClick= {()=>onAdd(count)}>Lo quiero!</button> */}
         </div>
 
     )

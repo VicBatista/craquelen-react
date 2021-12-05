@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
     useEffect(()=> {
         const promesaProdUnico = new Promise((resolve, reject)=>{
             setTimeout(()=>{
-                resolve(Productos.find(producto => producto.id === itemIdParams))
+                resolve(Productos.find(producto => producto.id.toString() === itemIdParams))
             }, 2000)
         });
         promesaProdUnico.then((prodEncontrado) => {
