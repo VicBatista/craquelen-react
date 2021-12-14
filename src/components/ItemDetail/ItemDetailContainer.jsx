@@ -1,30 +1,25 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Productos } from '../../helpers/Productos';
 import { useParams } from 'react-router-dom';
 import { ItemDetail } from './ItemDetail';
+import getFirestore from '../../Firebase/firebase';
 
 const ItemDetailContainer = () => {
     const [productoUnico, setProductoUnico] = useState({});
     const [loading, setLoading] = useState (true);
-    const {itemIdParams} = useParams();
+    const { itemIdParams } = useParams();
     
     useEffect(()=> {
-        const promesaProdUnico = new Promise((resolve, reject)=>{
-            setTimeout(()=>{
-                resolve(Productos.find(producto => producto.id.toString() === itemIdParams))
-            }, 2000)
-        });
-        promesaProdUnico.then((prodEncontrado) => {
-            setProductoUnico(prodEncontrado)
-        })
-        .catch((err)=> {
-            console.log('Error');
-        })
-        .finally(()=> {
-            setLoading(false)
-        })
-    }, [itemIdParams])
+        const db = getFirestore();
+
+        db.collection('productos')
+        .doc(itemIdParams)
+        .get()
+        .then(res => setProductoUnico({id: res.id, ...res.data()}))
+        .catch(err => console.log(err))
+        .finally(()=> setLoading(false))
+
+    })
 
     return (
         <div>

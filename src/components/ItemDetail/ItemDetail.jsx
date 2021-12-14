@@ -1,29 +1,32 @@
 import React from 'react';
-import { useEffect, useState, useContext, useParams } from 'react';
-//import { useCartContext } from '../../Context/CartContext';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ItemCounter from '../ItemCount/ItemCounter';
 import getFirestore from '../../Firebase/firebase';
+import { useCartContext } from '../../Context/CartContext';
 
 export const ItemDetail = ({item}) => {
-    console.log(item)
+    
     const [datos, setDatos] = useState({});
     const { idProduct } = useParams();
-    //const [count, setCount] = useState(1);
-    //const {cartList, addProducto} = useCartContext;
+    const [count, setCount] = useState(1);
+    const {cartList, addProducto} = useCartContext();
 
-    /* function onAdd(cant){
+    function onAdd(cant){
         setCount(cant)
-        addProducto({ item: item, cantidad: cant})
+        addProducto({ ...item, cantidad: cant})
     }
-    console.log(cartList) */
+    console.log(cartList)
 
 
     useEffect(() => {
         const db = getFirestore()
-        const dbQuery = db.collection('productos').doc({idProduct})
-        dbQuery.get()
+
+        db.collection('productos')
+        .doc(idProduct)
+        .get()
         .then(resp => setDatos( {id: resp.id, ...resp.data()} ))
-    }, [])
+    }, [idProduct])
 
     return (
         <div>
@@ -31,8 +34,8 @@ export const ItemDetail = ({item}) => {
             <h3>{item.name}</h3>
             <p>{item.description}</p>   
             <h4>${item.price}</h4>
-            <ItemCounter inicial={1} stock={item.stock} id={item.id}/>
-            {/* <button onClick= {()=>onAdd(count)}>Lo quiero!</button> */}
+            <ItemCounter onAdd={onAdd} count ={count} data={datos} inicial={1} stock={item.stock} id={item.id}/>
+            {<button onClick= {()=>onAdd(count)}>Lo quiero!</button> }
         </div>
     )
 }

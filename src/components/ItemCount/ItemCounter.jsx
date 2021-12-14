@@ -4,7 +4,7 @@ import './itemCounterStyles.css';
 
 const ItemCounter = ({inicial, stock, onAdd, item}) => {
     const [count, setCount] = useState(inicial);
-    const {cartList, addProducto} = useCartContext;
+    const {cartList, addProducto} = useCartContext();
 
  /*    function onAdd(cant){
         setCount(cant)
