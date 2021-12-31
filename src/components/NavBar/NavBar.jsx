@@ -1,10 +1,14 @@
 import React from 'react';
-import {Navbar, Container, Nav, Dropdown} from 'react-bootstrap';
 import CartIcon from './CartIcon';
+import { useCartContext } from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
+import {Navbar, Container, Nav, Dropdown} from 'react-bootstrap';
 import './navBarStyles.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
+    const count = (props);
+    const cartWidget = useCartContext();
+
     return (
         <div>
             <>
@@ -38,7 +42,10 @@ const NavBar = () => {
                                 <img src="https://i.ibb.co/qRKD4TK/logo.png" alt="Logo Craquelen" width="90" height="90"  className="d-inline-block align-top"/>
                             </Navbar.Brand>
                             <Nav>
-                                <CartIcon />
+                                <Link to= "/cart">
+                                    {cartWidget}
+                                    <CartIcon count={count} />
+                                </Link>
                             </Nav>
                         </ul>
                     </Navbar.Collapse>

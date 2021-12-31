@@ -4,7 +4,8 @@ import './itemCounterStyles.css';
 
 const ItemCounter = ({inicial, stock, onAdd, item}) => {
     const [count, setCount] = useState(inicial);
-    const {cartList, addProducto} = useCartContext();
+    // eslint-disable-next-line
+    const {cartList, addProduct} = useCartContext();
 
  /*    function onAdd(cant){
         setCount(cant)
@@ -13,31 +14,32 @@ const ItemCounter = ({inicial, stock, onAdd, item}) => {
     console.log(cartList) */
 
 
-    function Sumar() {
+    function sumar() {
         if (count<stock) {
             setCount(count + 1)
         }
     }
-    function Restar() {
+    function restar() {
         if (count>0) {
             setCount(count-1)   
         }
     }
-    function Agregar(cant) {
+    function agregar(cant) {
         onAdd(count)
         setCount(1)
-        addProducto({ item: item, cantidad: cant})
+        addProduct({ item: item, cantidad: cant})
     }
-    console.log(cartList)
+    //console.log(cartList)
 
     return (
         <div className="counter">
             <div className="addRestContainer">
-                <button onClick={Restar} type="button" className="btn">-</button>                                
+                <button onClick={restar} type="button" className="btn">-</button>                                
                 <div className="quant">{count}</div>
-                <button onClick={Sumar} type="button" className="btn">+</button>
+                <button onClick={sumar} type="button" className="btn">+</button>
             </div>
-            <button onClick={Agregar} className="btn-add">Lo quiero!</button>
+            { agregar ? <button onClick={agregar} className="btn-add">Lo quiero!</button> 
+            : <button onClick={agregar} className="btn-add">Lo quiero!</button>}
             {/* <button onClick= {()=>onAdd(count)}>Lo quiero!</button> */}
         </div>
 

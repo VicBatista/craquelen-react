@@ -3,9 +3,6 @@ import { useEffect, useState } from 'react';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
 import getFirestore from '../../Firebase/firebase';
-// import { dataBase } from '../../Firebase/firebase';
-//import Item from '../Item/Item';
-//import { getFetch } from '../../helpers/Productos';
 
 function ItemListContainer() {
     const [data, setData]= useState([]);
@@ -14,9 +11,17 @@ function ItemListContainer() {
     
     useEffect(() => {
         
-        const dbQuery = getFirestore();
+        const db = getFirestore();
+        const dbCollection = db.collection('productos');
+
+        const dbQuery = catIdParams ? dbCollection.where('category', '==', catIdParams) : dbCollection;
+
+        dbQuery.get()
+        .then(datos => setData(datos.docs.map( item => ( { id: item.id, ...item.data()}))))
+        .catch(err => {console.log(err)})
+        .finally(() => {setLoading(!true)})
         
-        if(catIdParams) {
+        /* if(catIdParams) {
             dbQuery.collection('productos')
             .where('category', '==', catIdParams)
             .get()
@@ -29,7 +34,7 @@ function ItemListContainer() {
             .then(datos => setData(datos.docs.map( item => ( { id: item.id, ...item.data()}))))
             .catch(err => {console.log(err)})
             .finally(() => {setLoading(!true)})
-        }
+        } */
         /* if(catIdParams){
             getFetch().then((Productos) => {
                 setData(Productos.filter(producto => producto.category === catIdParams))
