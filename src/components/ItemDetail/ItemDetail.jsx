@@ -1,9 +1,9 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import ItemCounter from '../ItemCount/ItemCounter';
 import getFirestore from '../../Firebase/firebase';
 import { useCartContext } from '../../Context/CartContext';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export const ItemDetail = ({item}) => {
     
@@ -15,7 +15,7 @@ export const ItemDetail = ({item}) => {
     const {cartList, addProduct} = useCartContext();
     
 
-    function onAdd(cant){
+    const onAdd= (cant) => {
         setCount(cant)  
         addProduct({ ...item, cantidad: cant})
     }
@@ -30,6 +30,9 @@ export const ItemDetail = ({item}) => {
         .doc(idProduct) 
         .get()
         .then(resp => setDatos( {id: resp.id, ...resp.data()} ))
+        .catch(err => console.log(err))
+        .finally(()=> setDatos(false))
+
     }, [idProduct])
 
     return (
@@ -39,7 +42,6 @@ export const ItemDetail = ({item}) => {
             <p>{item.description}</p>   
             <h4>${item.price}</h4>
             <ItemCounter onAdd={onAdd} count ={count} inicial={1} stock={item.stock} id={item.id}/>
-            {/* {<button onClick= {()=>onAdd(addProducto)}>Lo quiero!</button> } */}
         </div>
     )
 }

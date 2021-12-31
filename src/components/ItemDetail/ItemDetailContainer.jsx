@@ -1,12 +1,12 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { ItemDetail } from './ItemDetail';
 import getFirestore from '../../Firebase/firebase';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
     const [productoUnico, setProductoUnico] = useState({});
-    const [loading, setLoading] = useState (true);
+    const [loading, setLoading] = useState(true);
     const { itemIdParams } = useParams();
     
     useEffect(()=> {
@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
         .catch(err => console.log(err))
         .finally(()=> setLoading(false))
 
-    })
+    }, [itemIdParams])
 
     return (
         <div>

@@ -1,8 +1,8 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
+import React from 'react';
 import ItemList from '../ItemList/ItemList';
-import { useParams } from 'react-router-dom';
 import getFirestore from '../../Firebase/firebase';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function ItemListContainer() {
     const [data, setData]= useState([]);
@@ -18,39 +18,9 @@ function ItemListContainer() {
 
         dbQuery.get()
         .then(datos => setData(datos.docs.map( item => ( { id: item.id, ...item.data()}))))
-        .catch(err => {console.log(err)})
-        .finally(() => {setLoading(!true)})
-        
-        /* if(catIdParams) {
-            dbQuery.collection('productos')
-            .where('category', '==', catIdParams)
-            .get()
-            .then(datos => setData(datos.docs.map( item => ( { id: item.id, ...item.data()}))))
-            .catch(err => {console.log(err)})
-            .finally(() => {setLoading(false)})
-        } else {
-            dbQuery.collection('productos')
-            .get()
-            .then(datos => setData(datos.docs.map( item => ( { id: item.id, ...item.data()}))))
-            .catch(err => {console.log(err)})
-            .finally(() => {setLoading(!true)})
-        } */
-        /* if(catIdParams){
-            getFetch().then((Productos) => {
-                setData(Productos.filter(producto => producto.category === catIdParams))
-            })
-            .catch(err => {console.log(err)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-        } else {(
-            getFetch().then((data) => {setData(data)})
-            .catch((err) => {console.log(err)})
-            .finally(()=> {setLoading(!true)})
-            )
-        }   */
-    })
+        .catch(err => console.log(err))
+        .finally(() => setLoading(!true))
+    }, [catIdParams])
 
     console.log(data)
     
