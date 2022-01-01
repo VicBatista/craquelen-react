@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
+    
     <CartContextProvider>
       <BrowserRouter>
         <NavBar />
@@ -15,11 +16,12 @@ function App() {
           <Route exact path="/" element={<ItemListContainer />} />
           <Route path="categoria/:catIdParams" element={<ItemListContainer />} />
           <Route path="item/:itemIdParams" element={<ItemDetailContainer />} />
-          <Route path="/cart" element={Cart} />        
+          <Route path="/cart" element={<Cart/>} />        
         </ Routes>
       </BrowserRouter>
     </CartContextProvider>
-  );
+   
+  )
 }
 
 export default App;

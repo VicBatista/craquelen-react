@@ -39,7 +39,8 @@ function CartContextProvider({ children }) {
     
     return(
         <CartContext.Provider value= {[cartList, deleteFromCart, addProduct, emptyCart, totalPrice, cartWidget ]}>
-            {children}
+            <h1>Hola</h1>
+         [ {children} ]   
         </CartContext.Provider>
     )
 }
